@@ -1,0 +1,15 @@
+Library IEEE;
+    use IEEE.std_logic_1164.all;
+    entity andgate is
+        port(a,b:in std_logic;
+            y:out std_logic);
+        end andgate;
+        architecture behavioural of andgate is
+            
+                    begin
+                        y<= a and b ;
+        end behavioural;
+
+--This is a VHDL code for AND logic
+--This contains two inputs (a,b) and one output (y).
+--The output is high when both the inputs are high, otherwise the output will be low.
