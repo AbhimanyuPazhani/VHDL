@@ -1,0 +1,36 @@
+
+//Day 2 task. 
+
+Library IEEE;
+    use IEEE.std_logic_1164.all;
+    entity dyna_mux is
+        port(a1,a2,a3,a4:in real;
+            clk:in std_logic;
+            clr:in std_logic;
+            s:in std_logic_vector(1 downto 0);
+            y:out real);
+        end dyna_mux;
+        architecture behavioral of dyna_mux is                                  
+            begin                                                                   
+                mux_blk : process(clk,clr,s)
+                begin
+                    if clr='1' then
+                    y<=0.00;
+                    elsif rising_edge(clk)then
+                        
+                    case s is
+                        when "00" => y<= a1;
+                        when "01" => y <= a2;
+                        when "10" => y <= a3;
+                        when others => y <= a4;
+                        end case;
+                    end if;
+                    end process mux_blk;
+                end behavioral;
+
+
+
+-- This is a VHDL code for Dynamic multiplexer.
+-- Dynamic Multiplexer is nothing but a Multiplexer with the control signals of Clock and Clear.
+-- Multiplexer is a combinational Logic circuit, but in some applications, this needs to be configured.
+-- This helps the multiplexers only work when the control signals meet their conditions.
