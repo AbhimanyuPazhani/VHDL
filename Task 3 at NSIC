@@ -1,0 +1,25 @@
+//DAY 3 TASK.
+
+Library IEEE;
+    use IEEE.std_logic_1164.all;
+    entity threebit is
+    port(A2,A1,A0:in std_logic;
+            Z0,Z1,Z2,Z3,Z4,Z5,Z6,Z7:out std_logic);
+    end threebit;
+    architecture behavioral of threebit is
+            signal x1,x2,x3:std_logic;
+    begin
+            x1<= not A2;
+            x2<= not A1;
+            x3<= not A0;
+            Z0<= x1 and x2 and x3;
+            Z1<= x1 and x2 and A0;
+            Z2<= x1 and A1 and x3;
+            Z3<= x1 and A1 and A0;
+            Z4<= A2 and x2 and x3;
+            Z5<= A2 and x2 and A0;
+            Z6<= A2 and A1 and x3;
+            Z7<= A2 and A1 and A0;
+    end behavioral;
+
+--This is like a PLA logic. It has 3 inputs and 8 outputs.
