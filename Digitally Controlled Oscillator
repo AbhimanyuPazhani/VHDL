@@ -1,0 +1,52 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+
+entity dco is
+port(clk,clr:in std_logic;
+    a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15:in real;
+    din:in std_logic_vector(3 downto 0);
+    dout:inout std_logic_vector(3 downto 0);
+    y:out real);
+end dco;
+
+architecture beh of dco is
+signal temp:std_logic_vector(3 downto 0);
+begin
+cnt:process(clk,clr)
+begin
+        if clr='1' then
+            temp<=din;
+        elsif falling_edge(clk) then
+            temp<=temp+1;
+        end if;
+    end process cnt;     
+dout<=temp;
+
+mux_block: process(dout)
+  begin     
+     case dout is
+       when "0000"=>y<=a0;
+       when "0001"=>y<=a1;
+       when "0010"=>y<=a2;
+       when "0011"=>y<=a3;
+       when "0100"=>y<=a4;
+       when "0101"=>y<=a5;
+       when "0110"=>y<=a6;
+       when "0111"=>y<=a7;
+       when "1000"=>y<=a8;
+       when "1001"=>y<=a9;
+       when "1010"=>y<=a10;
+       when "1011"=>y<=a11;
+       when "1100"=>y<=a12;
+       when "1101"=>y<=a13;
+       when "1110"=>y<=a14;    
+       when others=>y<=a15;
+     end case;
+    
+  end process mux_block;
+end beh;
+
+-- Project 2 at NSIC Technical service centre.
+-- It is a Digitally controlled oscillator, which is used in various applications like Frequency synthesis and modulation purposes.
+-- This type of DCO's used for signal processing purposes.
